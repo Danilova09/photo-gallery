@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:8000',
+  avatarsUploadPath: 'http://localhost:8000/uploads/images/avatars/',
+  fbAppId: '705997010842508',
 };
 
 /*
