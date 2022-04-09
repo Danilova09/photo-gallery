@@ -51,19 +51,16 @@ router.post('/', auth, permit('user', 'admin'), upload.single('image'), async (r
 });
 
 
-router.delete('/:id', auth, permit('user', 'admin'), async (req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
     try {
-        const photo = await Photo.findById(req.params.id);
-
-        if (req.user.role === 'admin') {
-            return photo.deleteOne();
-        }
-
-        if (req.user.role === 'user' && req.user._id === req.body.user) {
+        const photo = await Photo.findById(req.params.id).populate('user');
+        const usersPhotosId = photo.user._id;
+        if (req.user._id.toString() === usersPhotosId.toString()) {
             photo.deleteOne();
+            return res.send({message: 'Photo deleted!'});
         }
 
-        return res.send(photo);
+        return res.send({error: 'Not allowed!'});
     } catch (e) {
         next(e);
     }

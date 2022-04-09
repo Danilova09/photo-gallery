@@ -1,6 +1,8 @@
 import { PhotosState } from './types';
 import { createReducer, on } from '@ngrx/store';
 import {
+  deletePhotoFailure,
+  deletePhotoRequest, deletePhotoSuccess,
   fetchPhotosFailure,
   fetchPhotosRequest,
   fetchPhotosSuccess, fetchUsersPhotosFailure, fetchUsersPhotosRequest, fetchUsersPhotosSuccess,
@@ -16,6 +18,8 @@ const initialState: PhotosState = {
   fetchError: null,
   postLoading: false,
   postError: null,
+  deleteLoading: false,
+  deleteError: null,
 };
 
 export const photosReducer = createReducer(
@@ -29,4 +33,7 @@ export const photosReducer = createReducer(
   on(fetchUsersPhotosRequest, (state) => ({...state, fetchLoading: true})),
   on(fetchUsersPhotosSuccess, (state, {photos}) => ({...state, fetchLoading: false, usersPhotos: photos})),
   on(fetchUsersPhotosFailure, (state, {error}) => ({...state, fetchLoading: false, fetchError: error})),
+  on(deletePhotoRequest, (state) => ({...state, deleteLoading: true})),
+  on(deletePhotoSuccess, (state) => ({...state, deleteLoading: false})),
+  on(deletePhotoFailure, (state, {error}) => ({...state, deleteLoading: false, deleteError: error})),
 );

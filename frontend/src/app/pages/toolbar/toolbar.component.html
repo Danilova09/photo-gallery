@@ -37,7 +37,7 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item>{{ (user | async)?.displayName }}</button>
           <button mat-menu-item routerLink="new-photo/">Add Photo</button>
-          <button mat-menu-item [routerLink]="['users-photos']" [queryParams]="{user: (user | async)?._id}">My Photos</button>
+          <button mat-menu-item [routerLink]="['users-personal-photos']" [queryParams]="{user: (user | async)?._id}">My Photos</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </nav>

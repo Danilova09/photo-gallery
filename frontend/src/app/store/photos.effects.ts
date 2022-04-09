@@ -4,6 +4,7 @@ import { PhotosService } from '../services/photos.service';
 import { Router } from '@angular/router';
 import { HelpersService } from '../services/helpers.service';
 import {
+  deletePhotoRequest, deletePhotoSuccess,
   fetchPhotosFailure, fetchPhotosRequest,
   fetchPhotosSuccess, fetchUsersPhotosFailure, fetchUsersPhotosRequest, fetchUsersPhotosSuccess,
   postPhotoFailure,
@@ -18,7 +19,7 @@ import { User } from '../models/user.model';
 
 @Injectable()
 export class PhotosEffects {
-  user!: undefined | null | User;
+  user!: null | User;
 
   constructor(
     private actions: Actions,
@@ -27,6 +28,9 @@ export class PhotosEffects {
     private helpers: HelpersService,
     private store: Store<AppState>,
   ) {
+    store.select(state => state.users.user).subscribe(user => {
+      this.user = user;
+    });
   }
 
   fetchPhotos = createEffect(() => this.actions.pipe(
@@ -43,12 +47,24 @@ export class PhotosEffects {
         map(photo => postPhotoSuccess({photo})),
         tap(({photo}) => {
           this.helpers.openSnackbar('Photo posted!');
-          void this.router.navigate(['/']);
+          void this.router.navigate(['users-personal-photos'], {queryParams: {user: this.user!._id}});
         }),
         this.helpers.catchServerError(postPhotoFailure)
       ))
     )
   );
+
+  deletePhoto = createEffect(() => this.actions.pipe(
+    ofType(deletePhotoRequest),
+    mergeMap(({photoId}) => this.photosService.deletePhoto(photoId).pipe(
+      map(() => deletePhotoSuccess()),
+      tap(() => {
+        this.helpers.openSnackbar('Photo deleted!');
+        this.store.dispatch(fetchUsersPhotosRequest({userId: this.user!._id}));
+      }),
+      this.helpers.catchServerError(deletePhotoRequest)
+    ))
+  ));
 
   fetchUsersCocktails = createEffect(() => this.actions.pipe(
     ofType(fetchUsersPhotosRequest),

@@ -28,4 +28,8 @@ export class PhotosService {
     params = params.append('user', userId);
     return this.http.get<Photo[]>(`${env.apiUrl}/photos`, {params: params});
   }
+
+  deletePhoto(photoId: string) {
+    return this.http.delete(env.apiUrl + '/photos/' + photoId);
+  }
 }

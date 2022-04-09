@@ -6,6 +6,7 @@ import { PhotosComponent } from './pages/photos/photos.component';
 import { PhotoFormComponent } from './pages/photo-form/photo-form.component';
 import { RoleGuardService } from './services/role-guard.service';
 import { UsersPhotosComponent } from './pages/users-photos/users-photos.component';
+import { UsersPersonalPhotosComponent } from './pages/users-personal-photos/users-personal-photos.component';
 
 const routes: Routes = [
   {path: '', component: PhotosComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: {roles: ['admin', 'user']}
   },
-  {path: 'users-photos', component: UsersPhotosComponent}
+  {path: 'users-photos', component: UsersPhotosComponent},
+  {path: 'users-personal-photos', component: UsersPersonalPhotosComponent}
 ];
 
 @NgModule({

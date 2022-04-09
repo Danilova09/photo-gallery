@@ -31,6 +31,7 @@ import { PhotosComponent } from './pages/photos/photos.component';
 import { PhotoFormComponent } from './pages/photo-form/photo-form.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersPhotosComponent } from './pages/users-photos/users-photos.component';
+import { UsersPersonalPhotosComponent } from './pages/users-personal-photos/users-personal-photos.component';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -58,6 +59,7 @@ const socialConfig: SocialAuthServiceConfig = {
     PhotosComponent,
     PhotoFormComponent,
     UsersPhotosComponent,
+    UsersPersonalPhotosComponent,
   ],
     imports: [
         BrowserModule,

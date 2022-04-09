@@ -15,6 +15,8 @@ export type PhotosState = {
   photos: Photo[],
   fetchLoading: boolean,
   fetchError: null | string,
+  deleteLoading: boolean,
+  deleteError: null | string,
   postLoading: boolean,
   postError: null | string,
 }
