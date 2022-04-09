@@ -31,11 +31,13 @@
       <nav *appHasRoles="['user', 'admin'] else anonMenu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon *ngIf="!(user | async)?.avatar">account_circle</mat-icon>
-          <img mat-card-sm-image class="avatar_img" *ngIf="(user | async)?.avatar" [src]="[avatars + (user | async)?.avatar]" [alt]="(user | async)?.displayName">
+          <img mat-card-sm-image class="avatar_img" *ngIf="(user | async)?.avatar"
+               [src]="[avatars + (user | async)?.avatar]" [alt]="(user | async)?.displayName">
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>{{ (user | async)?.displayName }}</button>
           <button mat-menu-item routerLink="new-photo/">Add Photo</button>
+          <button mat-menu-item [routerLink]="['users-photos']" [queryParams]="{user: (user | async)?._id}">My Photos</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </nav>

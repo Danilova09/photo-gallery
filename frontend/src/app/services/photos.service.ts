@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment as env} from '../../environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment as env } from '../../environments/environment';
 import { Photo, PhotoData } from '../models/photo.model';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { Photo, PhotoData } from '../models/photo.model';
 })
 export class PhotosService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getPhotos() {
     return this.http.get<Photo[]>(env.apiUrl + '/photos');
@@ -20,5 +21,11 @@ export class PhotosService {
       if (photoData[key] !== null) formData.append(key, photoData[key]);
     });
     return this.http.post<Photo>(env.apiUrl + '/photos', formData);
+  }
+
+  getUsersPhotos(userId: string) {
+    let params = new HttpParams();
+    params = params.append('user', userId);
+    return this.http.get<Photo[]>(`${env.apiUrl}/photos`, {params: params});
   }
 }

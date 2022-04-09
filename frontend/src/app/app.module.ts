@@ -30,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PhotosComponent } from './pages/photos/photos.component';
 import { PhotoFormComponent } from './pages/photo-form/photo-form.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UsersPhotosComponent } from './pages/users-photos/users-photos.component';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -56,6 +57,7 @@ const socialConfig: SocialAuthServiceConfig = {
     CenteredCardComponent,
     PhotosComponent,
     PhotoFormComponent,
+    UsersPhotosComponent,
   ],
     imports: [
         BrowserModule,

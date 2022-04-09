@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HelpersService } from '../services/helpers.service';
 import {
   fetchPhotosFailure, fetchPhotosRequest,
-  fetchPhotosSuccess,
+  fetchPhotosSuccess, fetchUsersPhotosFailure, fetchUsersPhotosRequest, fetchUsersPhotosSuccess,
   postPhotoFailure,
   postPhotoRequest,
   postPhotoSuccess
@@ -49,4 +49,12 @@ export class PhotosEffects {
       ))
     )
   );
+
+  fetchUsersCocktails = createEffect(() => this.actions.pipe(
+    ofType(fetchUsersPhotosRequest),
+    mergeMap(({userId}) => this.photosService.getUsersPhotos(userId).pipe(
+      map((photos) => fetchUsersPhotosSuccess({photos})),
+      this.helpers.catchServerError(fetchUsersPhotosFailure),
+    ))
+  ));
 }
