@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotosService } from '../../services/photos.service';
 import { Observable } from 'rxjs';
 import { Photo } from '../../models/photo.model';
 import { environment } from '../../../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { fetchPhotosRequest } from '../../store/photos.actions';
+import { HelpersService } from '../../services/helpers.service';
 
 @Component({
   selector: 'app-photos',
@@ -18,8 +18,8 @@ export class PhotosComponent implements OnInit {
   env = environment;
 
   constructor(
-    private cocktailsService: PhotosService,
     private store: Store<AppState>,
+    private helpersService: HelpersService,
   ) {
     this.photos = store.select(state => state.photos.photos);
     this.loading = store.select(state => state.photos.fetchLoading);
@@ -27,5 +27,9 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fetchPhotosRequest());
+  }
+
+  openDialog(photo: Photo) {
+    this.helpersService.openDialog(photo);
   }
 }

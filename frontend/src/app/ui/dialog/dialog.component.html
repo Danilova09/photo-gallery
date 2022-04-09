@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<p>by {{ data.user.displayName }}</p>
+<div mat-dialog-content>
+  <img mat-card-image [src]="env.photosUploadPath + data.image" [alt]="data.title">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">close</button>
+</div>

@@ -32,6 +32,8 @@ import { PhotoFormComponent } from './pages/photo-form/photo-form.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersPhotosComponent } from './pages/users-photos/users-photos.component';
 import { UsersPersonalPhotosComponent } from './pages/users-personal-photos/users-personal-photos.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './ui/dialog/dialog.component';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -60,29 +62,31 @@ const socialConfig: SocialAuthServiceConfig = {
     PhotoFormComponent,
     UsersPhotosComponent,
     UsersPersonalPhotosComponent,
+    DialogComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSnackBarModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatListModule,
-        FlexModule,
-        MatMenuModule,
-        MatCardModule,
-        SocialLoginModule,
-        AppStoreModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    FlexModule,
+    MatMenuModule,
+    MatCardModule,
+    SocialLoginModule,
+    AppStoreModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: 'SocialAuthServiceConfig', useValue: socialConfig}

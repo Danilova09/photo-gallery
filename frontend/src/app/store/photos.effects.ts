@@ -4,9 +4,14 @@ import { PhotosService } from '../services/photos.service';
 import { Router } from '@angular/router';
 import { HelpersService } from '../services/helpers.service';
 import {
-  deletePhotoRequest, deletePhotoSuccess,
-  fetchPhotosFailure, fetchPhotosRequest,
-  fetchPhotosSuccess, fetchUsersPhotosFailure, fetchUsersPhotosRequest, fetchUsersPhotosSuccess,
+  deletePhotoRequest,
+  deletePhotoSuccess,
+  fetchPhotosFailure,
+  fetchPhotosRequest,
+  fetchPhotosSuccess,
+  fetchUsersPhotosFailure,
+  fetchUsersPhotosRequest,
+  fetchUsersPhotosSuccess,
   postPhotoFailure,
   postPhotoRequest,
   postPhotoSuccess

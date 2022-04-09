@@ -1,53 +1,34 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/">Main page</a>
-      <p *appHasRoles="['user', 'admin']">
-        <a mat-list-item routerLink="new-photo/">new photo</a>
-      </p>
-    </mat-nav-list>
-  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar
-      color="primary"
       fxLayout="row"
-      fxLayoutAlign="space-between center"
-    >
+      class="toolbar"
+      fxLayoutAlign="space-between center">
       <div>
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
         <a class="logo" routerLink="/">Photo Gallery</a>
       </div>
       <nav *appHasRoles="['user', 'admin'] else anonMenu">
+        <strong style="margin-right: 20px; font-size: 15px; cursor: pointer; color: #fff;" routerLink="/">Hello, {{ (user | async)?.displayName }}</strong>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon *ngIf="!(user | async)?.avatar">account_circle</mat-icon>
           <img mat-card-sm-image class="avatar_img" *ngIf="(user | async)?.avatar"
                [src]="[avatars + (user | async)?.avatar]" [alt]="(user | async)?.displayName">
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>{{ (user | async)?.displayName }}</button>
+          <button mat-menu-item>{{ (user | async)?.email }}</button>
           <button mat-menu-item routerLink="new-photo/">Add Photo</button>
-          <button mat-menu-item [routerLink]="['users-personal-photos']" [queryParams]="{user: (user | async)?._id}">My Photos</button>
+          <button mat-menu-item [routerLink]="['users-personal-photos']" [queryParams]="{user: (user | async)?._id}">My
+            Photos
+          </button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </nav>
     </mat-toolbar>
-    <div class="content">
+    <div class="content container">
       <ng-content></ng-content>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
 <ng-template #anonMenu>
   <nav>
     <a mat-button routerLink="/register">REGISTER</a>
