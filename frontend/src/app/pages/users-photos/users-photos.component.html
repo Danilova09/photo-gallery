@@ -1,12 +1,13 @@
-<div style="text-align: center; display: block; width: 800px; margin: 80px auto;">
+<div style="text-align: center; display: block; width: 800px; margin: 80px auto 0 auto;">
   <h1>Photos</h1>
 </div>
+<button routerLink="/" mat-raised-button style="margin-bottom: 20px;"><mat-icon>keyboard_backspace</mat-icon></button>
 <div class="loading-block" style="display: flex; justify-content: center; align-items: center;"
      *ngIf="(loading | async) else  photosArea">
   <mat-spinner color="primary" style="margin-top: 50px;"></mat-spinner>
 </div>
 <ng-template #photosArea>
-  <div class="photos-list" style="padding: 0 30px;" fxLayout.xs="column"
+  <div class="photos-list" style="padding: 0 30px 80px 30px;" fxLayout.xs="column"
        fxLayout="row wrap" fxLayoutGap="15px" ngClass.gt-xs="ml-15">
     <mat-card style="cursor: pointer;"
               *ngFor="let  photo of (photos | async)" fxFlex.sm="0 1 calc(50%-15px)"

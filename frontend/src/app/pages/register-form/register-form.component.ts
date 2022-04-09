@@ -14,7 +14,7 @@ import { RegisterError } from '../../models/user.model';
 export class RegisterFormComponent implements AfterViewInit, OnDestroy {
   @ViewChild('f') form!: NgForm;
   loading!: Observable<boolean>;
-  error!: Observable<null| RegisterError>;
+  error!: Observable<null | RegisterError>;
   errorSub!: Subscription;
 
   constructor(private store: Store<AppState>) {

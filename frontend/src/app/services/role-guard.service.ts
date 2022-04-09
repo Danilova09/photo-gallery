@@ -30,6 +30,6 @@ export class RoleGuardService implements CanActivate {
         void this.router.navigate(['/login']);
         return false;
       })
-    )
+    );
   }
 }

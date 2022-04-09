@@ -5,4 +5,7 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">close</button>
+  <button mat-button (click)="onNoClick()" [routerLink]="['/users-photos']" [queryParams]="{user: data.user._id}">
+    View  {{data.user.displayName}}'s gallery
+  </button>
 </div>

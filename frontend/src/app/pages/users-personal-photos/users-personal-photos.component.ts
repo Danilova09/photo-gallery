@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { deletePhotoRequest, fetchUsersPhotosRequest } from '../../store/photos.actions';
-import { PhotosService } from '../../services/photos.service';
 
 @Component({
   selector: 'app-users-personal-photos',
@@ -22,12 +21,10 @@ export class UsersPersonalPhotosComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private store: Store<AppState>,
-    private photosService: PhotosService,
   ) {
     this.photos = store.select(state => state.photos.usersPhotos);
     this.loading = store.select(state => state.photos.fetchLoading);
   }
-
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.queryParams['user'];

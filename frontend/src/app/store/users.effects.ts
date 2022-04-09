@@ -15,6 +15,7 @@ import {
 } from './users.actions';
 import { map, mergeMap, tap } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Injectable()
 export class UsersEffects {
@@ -23,7 +24,9 @@ export class UsersEffects {
     private usersService: UsersService,
     private router: Router,
     private helpers: HelpersService,
-  ) {}
+    private auth: SocialAuthService,
+  ) {
+  }
 
   registerUser = createEffect(() => this.actions.pipe(
     ofType(registerUserRequest),
@@ -68,6 +71,7 @@ export class UsersEffects {
         map(() => logoutUser()),
         tap(() => {
           void this.router.navigate(['/']);
+          void this.auth.signOut();
           this.helpers.openSnackbar('Logout successful');
         })
       );

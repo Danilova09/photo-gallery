@@ -5,11 +5,12 @@
       class="toolbar"
       fxLayoutAlign="space-between center">
       <div>
-        <a class="logo" routerLink="/">Photo Gallery</a>
+        <a class="logo" routerLink="/">Photo Book</a>
       </div>
       <nav *appHasRoles="['user', 'admin'] else anonMenu">
-        <strong style="margin-right: 20px; font-size: 15px; cursor: pointer; color: #fff;" routerLink="/">Hello, {{ (user | async)?.displayName }}</strong>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <strong style="margin-right: 20px; font-size: 15px; cursor: pointer; color: #fff;"
+                routerLink="/">Hello, {{ (user | async)?.displayName }}</strong>
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="color: #fff;">
           <mat-icon *ngIf="!(user | async)?.avatar">account_circle</mat-icon>
           <img mat-card-sm-image class="avatar_img" *ngIf="(user | async)?.avatar"
                [src]="[avatars + (user | async)?.avatar]" [alt]="(user | async)?.displayName">

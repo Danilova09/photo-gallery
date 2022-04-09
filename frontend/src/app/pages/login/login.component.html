@@ -1,20 +1,12 @@
 <app-centered-card>
-  <form
-    #f="ngForm"
-    fxLayout="column"
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-  >
+  <form #f="ngForm" fxLayout="column" autocomplete="off" (ngSubmit)="onSubmit()">
     <h3>Sign In</h3>
     <div *ngIf="error | async" class="error">
-      {{ (error | async)?.error }}
+      Wrong Data!
     </div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input
-        type="email" name="email" autocomplete="username"
-        email required matInput ngModel #email="ngModel"
-      />
+      <input type="email" name="email" autocomplete="username" email required matInput ngModel #email="ngModel"/>
       <mat-error *ngIf="email.touched && email.hasError('required')">
         Email is required!
       </mat-error>
@@ -22,13 +14,10 @@
         Enter correct email!
       </mat-error>
     </mat-form-field>
-
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input
-        type="password" name="password" autocomplete="current-password"
-        required matInput ngModel #password="ngModel"
-      />
+      <input type="password" name="password" autocomplete="current-password" required matInput ngModel
+             #password="ngModel"/>
       <mat-error *ngIf="password.touched && password.hasError('required')">
         Password is required!
       </mat-error>
@@ -36,22 +25,10 @@
     <div fxLayout="row" fxLayoutAlign="center" style="margin-bottom: 16px">
       <a routerLink="/register">Don't have an account? Sign Up</a>
     </div>
-    <button
-      type="button"
-      (click)="onSubmit()"
-      mat-raised-button
-      color="primary"
-      [disabled]="f.invalid"
-    >
+    <button type="button" (click)="onSubmit()" mat-raised-button color="primary" [disabled]="f.invalid">
       SIGN IN
     </button>
-    <button
-      type="button"
-      mat-raised-button
-      color="default"
-      (click)="fbLogin()"
-      style="margin-top: 16px;"
-    >
+    <button type="button" mat-raised-button color="default" (click)="fbLogin()" style="margin-top: 16px;">
       <img src="assets/icons/fb.svg" alt="facebook"/>
       SING IN WITH FACEBOOK
     </button>

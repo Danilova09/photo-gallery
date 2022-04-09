@@ -8,8 +8,7 @@ import { Photo, PhotoData } from '../models/photo.model';
 })
 export class PhotosService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getPhotos() {
     return this.http.get<Photo[]>(env.apiUrl + '/photos');

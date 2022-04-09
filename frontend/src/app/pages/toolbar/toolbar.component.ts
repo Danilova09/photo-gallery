@@ -6,7 +6,6 @@ import { User } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { logoutUserRequest } from '../../store/users.actions';
-import { SocialAuthService } from 'angularx-social-login';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -27,13 +26,11 @@ export class ToolbarComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store<AppState>,
-    private auth: SocialAuthService,
   ) {
     this.user = store.select(state => state.users.user);
   }
 
   logout() {
     this.store.dispatch(logoutUserRequest());
-    this.auth.signOut().then().catch();
   }
 }

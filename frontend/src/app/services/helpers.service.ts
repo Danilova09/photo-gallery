@@ -14,7 +14,7 @@ export class HelpersService {
   constructor(
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-    ) {}
+  ) {}
 
   openSnackbar(message: string, action?: string, config?: MatSnackBarConfig) {
     if (!config || !config.duration) {
