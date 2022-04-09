@@ -2,3 +2,6 @@
 .DS_Store/
 node_modules/
 public/uploads/images/avatars/*
+public/uploads/images/photos/*
+!public/uploads/images/avatars/.gitkeep
+!public/uploads/images/photos/.gitkeep
