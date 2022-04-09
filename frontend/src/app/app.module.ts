@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PhotosComponent } from './pages/photos/photos.component';
 import { PhotoFormComponent } from './pages/photo-form/photo-form.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 const socialConfig: SocialAuthServiceConfig = {
@@ -56,27 +57,28 @@ const socialConfig: SocialAuthServiceConfig = {
     PhotosComponent,
     PhotoFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    FlexModule,
-    MatMenuModule,
-    MatCardModule,
-    SocialLoginModule,
-    AppStoreModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatListModule,
+        FlexModule,
+        MatMenuModule,
+        MatCardModule,
+        SocialLoginModule,
+        AppStoreModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: 'SocialAuthServiceConfig', useValue: socialConfig}

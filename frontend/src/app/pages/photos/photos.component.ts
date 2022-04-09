@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotosService } from '../../services/photos.service';
+import { Observable } from 'rxjs';
+import { Photo } from '../../models/photo.model';
+import { environment } from '../../../environments/environment';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/types';
+import { fetchPhotosRequest } from '../../store/photos.actions';
 
 @Component({
   selector: 'app-photos',
@@ -7,11 +13,19 @@ import { PhotosService } from '../../services/photos.service';
   styleUrls: ['./photos.component.sass']
 })
 export class PhotosComponent implements OnInit {
+  photos!: Observable<Photo[]>;
+  loading!: Observable<boolean>;
+  env = environment;
 
-  constructor(private pService: PhotosService) { }
-
-  ngOnInit(): void {
-    this.pService.getPhotos();
+  constructor(
+    private cocktailsService: PhotosService,
+    private store: Store<AppState>,
+  ) {
+    this.photos = store.select(state => state.photos.photos);
+    this.loading = store.select(state => state.photos.fetchLoading);
   }
 
+  ngOnInit(): void {
+    this.store.dispatch(fetchPhotosRequest());
+  }
 }
