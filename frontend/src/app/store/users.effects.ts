@@ -16,16 +16,25 @@ import {
 import { map, mergeMap, tap } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
 import { SocialAuthService } from 'angularx-social-login';
+import { User } from '../models/user.model';
+import { AppState } from './types';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class UsersEffects {
+  user!: null | User;
+
   constructor(
     private actions: Actions,
     private usersService: UsersService,
     private router: Router,
     private helpers: HelpersService,
     private auth: SocialAuthService,
+    private store: Store<AppState>,
   ) {
+    store.select(state => state.users.user).subscribe(user => {
+      this.user = user;
+    })
   }
 
   registerUser = createEffect(() => this.actions.pipe(
@@ -71,7 +80,9 @@ export class UsersEffects {
         map(() => logoutUser()),
         tap(() => {
           void this.router.navigate(['/']);
-          void this.auth.signOut();
+          if (this.user?.facebookId) {
+            void this.auth.signOut();
+          }
           this.helpers.openSnackbar('Logout successful');
         })
       );

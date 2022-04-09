@@ -13,6 +13,7 @@ export interface User {
   avatar: string,
   role: string,
   token: string,
+  facebookId: undefined | string,
 }
 
 export interface LoginUserData {
