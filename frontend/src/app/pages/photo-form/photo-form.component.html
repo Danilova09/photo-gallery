@@ -1,0 +1,25 @@
+<app-centered-card title="Add photo">
+  <form #f="ngForm" fxLayout="column" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        type="text" name="title" autocomplete="title"
+        required matInput ngModel #title="ngModel"/>
+      <mat-error *ngIf="title.touched && title.hasError('required')">
+        Title is required!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Image</mat-label>
+      <app-file-input name="image" ngModel #image=ngModel required></app-file-input>
+      <mat-error *ngIf="image.touched && image.hasError('required')">
+        Image is required!
+      </mat-error>
+    </mat-form-field>
+    <p *ngIf="imageError" class="error">Image is required</p>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary">ADD PHOTO</button>
+  </form>
+</app-centered-card>

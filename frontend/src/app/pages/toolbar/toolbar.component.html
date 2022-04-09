@@ -7,7 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/">Main page</a>
       <p *appHasRoles="['user', 'admin']">
-        <a mat-list-item routerLink="artist-new/">Admin page</a>
+        <a mat-list-item routerLink="new-photo/">new photo</a>
       </p>
     </mat-nav-list>
   </mat-sidenav>
@@ -26,7 +26,7 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <a class="logo" routerLink="/">Logo</a>
+        <a class="logo" routerLink="/">Photo Gallery</a>
       </div>
       <nav *appHasRoles="['user', 'admin'] else anonMenu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -34,7 +34,8 @@
           <img mat-card-sm-image class="avatar_img" *ngIf="(user | async)?.avatar" [src]="[avatars + (user | async)?.avatar]" [alt]="(user | async)?.displayName">
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>{{ (user | async)?.email }}</button>
+          <button mat-menu-item>{{ (user | async)?.displayName }}</button>
+          <button mat-menu-item routerLink="new-photo/">Add Photo</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </nav>
